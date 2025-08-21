@@ -6,6 +6,18 @@
         <h5 class="section-title ff-secondary text-start text-primary fw-normal">Register</h5>
         <h1 class="text-white mb-4">Register for a new user</h1>
 
+        <div class="container-xxl py-5 bg-dark hero-header mb-5" style="margin-top: -25px;">
+                <div class="container text-center my-5 pt-5 pb-4">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Registration</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Register</a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+
         <!-- FIXED FORM -->
         <form method="POST" action="{{ route('register') }}" class="col-md-12">
             @csrf
