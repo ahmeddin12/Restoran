@@ -41,8 +41,7 @@
                                     <td>${{$food->price}}</td>
                                     <td><a href = "{{route('food.delete.cart' , $food->food_id)}}" class="btn btn-danger text-white">delete</td>
                                 </tr>
-                            @endforeach
-                       
+                        @endforeach
                         @else
                             <h6 class = "alert alert-success">You have no items in cart yet</h6>
                         @endif
@@ -52,7 +51,17 @@
                       </table>
                         <div class="position-relative mx-auto" style="max-width: 400px; padding-left: 679px;">
                         <p style="margin-left: -7px;" class="w-19 py-3 ps-4 pe-5" type="text">Total: ${{$totalPrice}}</p>
+                        @if($totalPrice == 0)
+<div style="display: flex; align-items: center; text-align: center; margin: 20px 0;">
+        <hr style="flex: 1; border: none; border-top: 1px solid #ccc; margin: 0;">
+        <span style="padding: 0 10px; color: #856404; font-weight: 500;">
+            No items in cart. You can't checkout.
+        </span>
+        <hr style="flex: 1; border: none; border-top: 1px solid #ccc; margin: 0;">
+    </div>                        @else{
                         <button type="button" class="btn btn-primary py-2 top-0 end-0 mt-2 me-2">Checkout</button>
-                </div>
+                        }
+                        @endif
+                    </div>
             </div>
 @endsection()
