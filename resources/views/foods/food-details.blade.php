@@ -12,7 +12,15 @@
                     </nav>
                 </div>
             </div>
-
+            <div class>
+@if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+@endif
+</div>
             <div class="container-xxl py-5">
             <div class="container">
                 <div class="row g-5 align-items-center">
@@ -35,7 +43,20 @@
                             </div>
                            
                         </div>
-                        <a class="btn btn-primary py-3 px-5 mt-2" href="">Add to Cart</a>
+                        <form method="POST" action="{{ route('food.cart', $fooditem->id) }}">
+                            @csrf
+                            <input type="hidden" name = "user_id" value = "{{ Auth::user()->id }}">
+                            <input type="hidden" name = "food_id" value = "{{$fooditem->id}}">
+                            <input type="hidden" name = "name" value = "{{$fooditem->title}}">
+                            <input type="hidden" name = "image" value = "{{$fooditem->image}}">
+                            <input type="hidden" name = "price" value = "{{$fooditem->price}}">
+                            @if($cartVarifying > 0)
+                                <button type = "submit" name = "submit" class="btn btn-primary py-3 px-5 mt-2" disabled>Added to Cart</button>
+                            @else
+                                <button type = "submit" name = "submit" class="btn btn-primary py-3 px-5 mt-2">Add to Cart</button>
+                            @endif
+                        </form>
+
                     </div>
                 </div>
             </div>
