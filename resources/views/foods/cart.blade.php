@@ -12,14 +12,18 @@
                 </div>
             </div>
 
-
+@if (\Session::has('delete'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('delete') !!}</li>
+        </ul>
+    </div>
+@endif
    <div class="container">
                 
                 <div class="col-md-12">
                     <table class="table">
                         
-                        @if($cartItems->count() > 0)
-                        @foreach($cartItems as $food)
                         <thead>
                           <tr>
                             <th scope="col">Image</th>
@@ -29,24 +33,26 @@
                           </tr>
                         </thead>
                         <tbody>
+                        @if($cartItems->count() > 0)
+                        @foreach($cartItems as $food)
                                 <tr>
                                     <th><img width = "40" height = "40" src = "{{asset('assets/'.$food->image.'')}}"</th>
                                     <td>{{$food->name}}</td>
                                     <td>${{$food->price}}</td>
-                                    <td><a class="btn btn-danger text-white">delete</td>
+                                    <td><a href = "{{route('food.delete.cart' , $food->food_id)}}" class="btn btn-danger text-white">delete</td>
                                 </tr>
                             @endforeach
-                        <div class="position-relative mx-auto" style="max-width: 400px; padding-left: 679px;">
-                        <p style="margin-left: -7px;" class="w-19 py-3 ps-4 pe-5" type="text"> Total: $100</p>
-                        <button type="button" class="btn btn-primary py-2 top-0 end-0 mt-2 me-2">Checkout</button>
+                       
                         @else
                             <h6 class = "alert alert-success">You have no items in cart yet</h6>
                         @endif
                         
-                    </div>
+                      </div>
                         </tbody>
                       </table>
-                      
+                        <div class="position-relative mx-auto" style="max-width: 400px; padding-left: 679px;">
+                        <p style="margin-left: -7px;" class="w-19 py-3 ps-4 pe-5" type="text">Total: ${{$totalPrice}}</p>
+                        <button type="button" class="btn btn-primary py-2 top-0 end-0 mt-2 me-2">Checkout</button>
                 </div>
             </div>
 @endsection()
