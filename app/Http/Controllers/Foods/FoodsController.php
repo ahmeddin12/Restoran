@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Food\Food;
 use App\Models\Food\Cart;
+use App\Models\Food\checkout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -74,5 +75,30 @@ class FoodsController extends Controller
         if ($price > 0) {
             return redirect()->route('foods.checkout', compact('price'));
         }
+    }
+
+    public function checkout()
+    {
+        return view('foods.checkout');
+    }
+
+    public function storeCheckout(Request $request)
+    {
+
+        $checkout = Checkout::create(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'town' => $request->town,
+                'country' => $request->country,
+                'zipcode' => $request->zipcode,
+                'phone_number' => $request->phone_number,
+                'address' => $request->address,
+                'user_id' => Auth::user()->id,
+                'price' => $request->price,
+
+            ]
+        );
+        echo "go to paypal";
     }
 }
