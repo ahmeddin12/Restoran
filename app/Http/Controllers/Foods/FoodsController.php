@@ -100,5 +100,11 @@ class FoodsController extends Controller
             ]
         );
         echo "go to paypal";
+
+        return redirect()->route('foods.pay');
+    }
+    public function payWithPaypal()
+    {
+        return view('foods.pay');
     }
 }
