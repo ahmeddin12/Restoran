@@ -107,4 +107,13 @@ class FoodsController extends Controller
     {
         return view('foods.pay');
     }
+
+    public function success()
+    {
+        $deleteItems = Cart::where('user_id', Auth::user()->id);
+        $deleteItems->delete();
+        if ($deleteItems) {
+            return view('foods.success')->with('success', 'You Paid for the Items successfully');
+        };
+    }
 }
