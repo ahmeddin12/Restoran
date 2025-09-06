@@ -73,13 +73,22 @@ class FoodsController extends Controller
         $price = Session::get('price');
 
         if ($price > 0) {
-            return redirect()->route('foods.checkout', compact('price'));
+            if (Session::get('price') == 0) {
+                abort('403');
+            } else {
+                return redirect()->route('foods.checkout', compact('price'));
+            }
         }
     }
 
     public function checkout()
     {
-        return view('foods.checkout');
+        if (Session::get('price') == 0) {
+            abort('403');
+        } else {
+
+            return view('foods.checkout');
+        }
     }
 
     public function storeCheckout(Request $request)
@@ -99,12 +108,20 @@ class FoodsController extends Controller
 
             ]
         );
+        if (Session::get('price') == 0) {
+            abort('403');
+        } else {
 
-        return redirect()->route('foods.pay');
+            return redirect()->route('foods.pay');
+        }
     }
     public function payWithPaypal()
     {
-        return view('foods.pay');
+        if (Session::get('price') == 0) {
+            abort('403');
+        } else {
+            return view('foods.pay');
+        }
     }
 
     public function success()
@@ -112,13 +129,23 @@ class FoodsController extends Controller
         $deleteItems = Cart::where('user_id', Auth::user()->id);
         $deleteItems->delete();
         if ($deleteItems) {
-            return redirect()->route('foods.displaySuccess')->with('success', 'You Paid for the Items successfully');
+            if (Session::get('price') == 0) {
+                abort('403');
+            } else {
+
+                return redirect()->route('foods.displaySuccess')->with('success', 'You Paid for the Items successfully');
+            }
         };
+        Session::forget('price');
     }
 
 
     public function displaySuccess()
     {
-        return view('foods.success');
+        if (Session::get('price') == 0) {
+            abort('403');
+        } else {
+            return view('foods.success');
+        }
     }
 }
