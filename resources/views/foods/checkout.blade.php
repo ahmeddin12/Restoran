@@ -18,7 +18,7 @@
     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
       <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
       <h1 class="text-white mb-4">Checkout</h1>
-      <form method="POST" action="{{ route('prepare.checkout.store') }}" class=" col-md-12">
+      <form method="POST" action="{{ route('prepare.checkout.store') }}" class="col-md-12">
         @csrf
         <div class="row g-3">
           <div class="col-md-12">

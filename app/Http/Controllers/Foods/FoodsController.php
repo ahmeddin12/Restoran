@@ -99,7 +99,6 @@ class FoodsController extends Controller
 
             ]
         );
-        echo "go to paypal";
 
         return redirect()->route('foods.pay');
     }
@@ -113,7 +112,13 @@ class FoodsController extends Controller
         $deleteItems = Cart::where('user_id', Auth::user()->id);
         $deleteItems->delete();
         if ($deleteItems) {
-            return view('foods.success')->with('success', 'You Paid for the Items successfully');
+            return redirect()->route('foods.displaySuccess')->with('success', 'You Paid for the Items successfully');
         };
+    }
+
+
+    public function displaySuccess()
+    {
+        return view('foods.success');
     }
 }

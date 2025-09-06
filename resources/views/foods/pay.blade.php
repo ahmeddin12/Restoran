@@ -35,7 +35,7 @@
       onApprove: (data, actions) => {
         return actions.order.capture().then(function(orderData) {
 
-          window.location.href = 'http://127.0.0.1:8000/foods/cart';
+          window.location.href = "{{route('foods.success') }}"
         });
       }
     }).render('#paypal-button-container');
