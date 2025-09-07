@@ -184,4 +184,15 @@ class FoodsController extends Controller
             }
         }
     }
+
+    public function menu()
+    {
+        $breakfastFoods = Food::select()->take(4)->where('category', 'Breakfast')->orderBy('id', 'desc')->get();
+
+        $lunchFoods = Food::select()->take(4)->where('category', 'Lunch')->orderBy('id', 'desc')->get();
+
+        $dinnerFoods = Food::select()->take(4)->where('category', 'Dinner')->orderBy('id', 'desc')->get();
+
+        return view('foods.menu', compact('breakfastFoods', 'lunchFoods', 'dinnerFoods'));
+    }
 }
