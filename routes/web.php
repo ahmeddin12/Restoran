@@ -48,3 +48,12 @@ Route::get('/foods/menu', [App\Http\Controllers\Foods\FoodsController::class, 'm
 //Users
 
 Route::get('/users/all-bookings', [App\Http\Controllers\Users\UsersController::class, 'getBookings'])->name('users.bookings');
+
+Route::get('/users/orders', [App\Http\Controllers\Users\UsersController::class, 'getOrders'])->name('users.orders');
+
+
+//review
+
+Route::get('/users/write-review', [App\Http\Controllers\Users\UsersController::class, 'writeReview'])->name('users.write.review');
+
+Route::post('/users/submit-review', [App\Http\Controllers\Users\UsersController::class, 'submitReview'])->name('users.submit.review');
