@@ -35,3 +35,7 @@ Route::get('/foods/pay', [App\Http\Controllers\Foods\FoodsController::class, 'pa
 Route::get('/foods/success-process', [App\Http\Controllers\Foods\FoodsController::class, 'success'])->name('foods.success');
 
 Route::get('/foods/success', [App\Http\Controllers\Foods\FoodsController::class, 'displaySuccess'])->name('foods.displaySuccess');
+
+
+//booking
+Route::post('/foods/booking', [App\Http\Controllers\Foods\FoodsController::class, 'bookingTables'])->name('food.booking.table');

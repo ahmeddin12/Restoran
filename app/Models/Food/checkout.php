@@ -6,7 +6,7 @@ namespace App\Models\Food;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class checkout extends Model
+class Checkout extends Model
 {
     use HasFactory;
 

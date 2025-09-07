@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Food\Food;
 use App\Models\Food\Cart;
-use App\Models\Food\checkout;
+use App\Models\Food\Checkout;
+use App\Models\Food\Booking;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+
+
 
 
 class FoodsController extends Controller
@@ -146,6 +149,39 @@ class FoodsController extends Controller
             abort('403');
         } else {
             return view('foods.success');
+        }
+    }
+
+    public function bookingTables(Request $request)
+    {
+
+        Request()->validate([
+            'name'        => 'required|string|max:40',
+            'email'       => 'required|email|max:40',
+            'date'        => 'required|date',
+            'num_people'  => 'required|integer',
+            'spe_request' => 'required|string',
+        ]);
+
+        $currentDate = date('m/d/Y h:i:sa');
+
+        if ($request->date < $currentDate or $request->date == $currentDate) {
+            return redirect()->route('home')->with('error', 'Please select a correct date!');
+        } else {
+
+            $bookingTable = Booking::create(
+                [
+                    'user_id' => Auth::user()->id,
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'date' => $request->date,
+                    'num_people' => $request->num_people,
+                    'spe_request' => $request->spe_request,
+                ]
+            );
+            if ($bookingTable) {
+                return redirect()->route('home')->with('booked', 'You booked a table succesfully!');
+            }
         }
     }
 }
