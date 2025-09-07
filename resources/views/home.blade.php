@@ -32,6 +32,13 @@
     </ul>
 </div>
 @endif
+@if (\Session::has('submitted'))
+<div class="alert alert-success">
+    <ul>
+        <li>{!! \Session::get('submitted') !!}</li>
+    </ul>
+</div>
+@endif
 <div class="container-xxl py-5">
     <div class="container">
         <div class="row g-4">
