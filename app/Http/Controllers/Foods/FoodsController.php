@@ -19,8 +19,14 @@ class FoodsController extends Controller
     public function foodDetails($id)
     {
         $fooditem = Food::find($id);
-        $cartVarifying = Cart::where('food_id', $id)->where('user_id', Auth::user()->id)->count();
-        return view('foods.food-details', compact('fooditem', 'cartVarifying'));
+        $currentUser = Auth::user();
+        if ($currentUser) {
+
+            $cartVarifying = Cart::where('food_id', $id)->where('user_id', Auth::user()->id)->count();
+        } else {
+
+            return view('foods.food-details', compact('fooditem'));
+        }
     }
 
     public function cart(Request $request, $id)
