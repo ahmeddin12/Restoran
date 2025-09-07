@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Foods\UsersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,3 +43,8 @@ Route::post('/foods/booking', [App\Http\Controllers\Foods\FoodsController::class
 
 //menu
 Route::get('/foods/menu', [App\Http\Controllers\Foods\FoodsController::class, 'menu'])->name('foods.menu');
+
+
+//Users
+
+Route::get('/users/all-bookings', [App\Http\Controllers\Users\UsersController::class, 'getBookings'])->name('users.bookings');
