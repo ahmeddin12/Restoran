@@ -23,14 +23,24 @@
         <div class="row g-3">
           <div class="col-md-12">
             <div class="form-floating">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name">
+              <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Your Name" value="{{ old('name') }}">
               <label for="name">Your Name</label>
+              @error('name')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+              @enderror
             </div>
           </div>
           <div class="col-12">
             <div class="form-floating">
-              <textarea name="Review" class="form-control" placeholder="Review" id="message" style="height: 100px"></textarea>
+              <textarea name="review" class="form-control @error('review') is-invalid @enderror" placeholder="Review" id="message" value="{{ old('review') }}" style="height: 100px"></textarea>
               <label for="message">Review</label>
+              @error('review')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+              @enderror
             </div>
           </div>
           <div class="col-12">
