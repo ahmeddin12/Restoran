@@ -155,8 +155,8 @@ class FoodsController extends Controller
     public function bookingTables(Request $request)
     {
 
-        Request()->validate([
-            'name'        => 'required|string|max:40',
+        request()->validate([
+            'name'        => ['required', 'string', 'max:40', 'regex:/^[\pL\s]+$/u'],
             'email'       => 'required|email|max:40',
             'date'        => 'required|date',
             'num_people'  => 'required|integer',
