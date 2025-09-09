@@ -24,8 +24,8 @@
 
         <div class="collapse navbar-collapse" id="navbarText">
 
-          @auth('admin')
-          <ul class="navbar-nav side-nav">
+          @if (Auth::guard('admin')->check() && !request()->routeIs('view.login'))
+          <ul class="navbar-nav side-nav flex-column bg-dark position-fixed" style="width:220px; top:56px; left:0; height: calc(100vh - 56px); overflow-y:auto;">
             <li class="nav-item">
               <a class="nav-link" style="margin-left: 20px;" href="index.html">Home
                 <span class="sr-only">(current)</span>
@@ -45,11 +45,11 @@
             </li>
 
           </ul>
-          @endauth
+          @endif
 
           <ul class="navbar-nav ml-md-auto d-md-flex">
 
-            @auth('admin')
+            @if (Auth::guard('admin')->check() && !request()->routeIs('view.login'))
             <li class="nav-item">
               <a class="nav-link" href="index.html">Home
                 <span class="sr-only">(current)</span>
@@ -70,26 +70,37 @@
                   @csrf
                 </form>
 
+              </div>
+
             </li>
             @else
             <li class="nav-item">
-              <a class="nav-link" href="admins/login-admins.html">login
+              <a class="nav-link" href="{{ route('view.login') }}">login
               </a>
             </li>
-            @endauth
+            @endif
 
           </ul>
         </div>
       </div>
     </nav>
-    <div class="container-fluid">
+    @if (Auth::guard('admin')->check() && !request()->routeIs('view.login'))
+    <div class="container-fluid" style="margin-left:220px; padding-top:80px;">
 
       <main class="py-4">
         @yield('content')
       </main>
 
     </div>
-  </div>
+    @else
+    <div class="container-fluid d-flex justify-content-center" style="padding-top:80px;">
+      <div class="w-100" style="max-width: 720px;">
+        <main class="py-4">
+          @yield('content')
+        </main>
+      </div>
+    </div>
+    @endif
   </div>
   <script type="text/javascript">
 
