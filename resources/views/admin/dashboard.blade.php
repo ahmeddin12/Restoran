@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container mt-4"> <!-- Add container and margin-top -->
+<div class="container mt-4" style="margin-top: -150px; margin-left: -200px"> <!-- Add container and margin-top -->
   <div class="row g-4"> <!-- g-4 adds gutter spacing between columns -->
     <div class="col-md-3">
       <div class="card">
