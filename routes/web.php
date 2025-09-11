@@ -71,6 +71,7 @@ Route::group(
     ["prefix" => "admins", "middleware" => "auth:admin"],
     function () {
         Route::get('/dashboard', [App\Http\Controllers\Admins\AdminsController::class, 'dashboard'])->name('admins.dashboard');
+        Route::get('/admins-list', [App\Http\Controllers\Admins\AdminsController::class, 'adminList'])->name('admins.list');
     }
 );
 
