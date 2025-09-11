@@ -7,7 +7,7 @@
   <title>Admin Panel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="{{ asset('assets/styles/style.css')}}" rel="stylesheet">
+  <link href="{{asset('assets/styles/style.css')}}" rel="stylesheet">
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
@@ -23,9 +23,8 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarText">
-
-          @if (Auth::guard('admin')->check() && !request()->routeIs('view.login'))
-          <ul class="navbar-nav side-nav flex-column bg-dark position-fixed" style="width:220px; top:56px; left:0; height: calc(100vh - 56px); overflow-y:auto;">
+          @auth
+          <ul class="navbar-nav side-nav">
             <li class="nav-item">
               <a class="nav-link" style="margin-left: 20px;" href="index.html">Home
                 <span class="sr-only">(current)</span>
@@ -43,64 +42,48 @@
             <li class="nav-item">
               <a class="nav-link" href="bookings-admins/show-bookings.html" style="margin-left: 20px;">Bookings</a>
             </li>
-
           </ul>
-          @endif
+          @endauth
 
           <ul class="navbar-nav ml-md-auto d-md-flex">
-
-            @if (Auth::guard('admin')->check() && !request()->routeIs('view.login'))
+            @auth('admin')
             <li class="nav-item">
               <a class="nav-link" href="index.html">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+
             <li class="nav-item dropdown">
               <a class="nav-link  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ Auth::guard('admin')->user()->name}}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                <a class="dropdown-item" href="{{ route('logout') }}"
+                <a class="dropdown-item" href="{{ route('admins.logout') }}"
                   onclick="event.preventDefault();
-                  document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
+                  document.getElementById('admin-logout-form').submit();">
+                  Logout
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+
+                <form id="admin-logout-form" action="{{ route('admins.logout') }}" method="POST" class="d-none">
                   @csrf
                 </form>
-
-              </div>
 
             </li>
             @else
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('view.login') }}">login
+              <a class="nav-link" href="admins/login-admins.html">login
               </a>
             </li>
-            @endif
+            @endauth
 
           </ul>
         </div>
       </div>
     </nav>
-    @if (Auth::guard('admin')->check() && !request()->routeIs('view.login'))
-    <div class="container-fluid" style="margin-left:220px; padding-top:80px;">
-
-      <main class="py-4">
-        @yield('content')
-      </main>
-
+    <div class="container-fluid">
+      <main class="py-4"> @yield('content') </main>
     </div>
-    @else
-    <div class="container-fluid d-flex justify-content-center" style="padding-top:80px;">
-      <div class="w-100" style="max-width: 720px;">
-        <main class="py-4">
-          @yield('content')
-        </main>
-      </div>
-    </div>
-    @endif
+  </div>
   </div>
   <script type="text/javascript">
 
