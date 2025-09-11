@@ -61,4 +61,13 @@ class AdminsController extends Controller
     // Redirect back to the login page
     return redirect()->route('home')->with('status', 'You have been logged out successfully!');
   }
+
+  public function adminList()
+  {
+
+
+    $admins = Admin::select()->OrderBy('id', 'desc')->get();
+
+    return view('admin.adminList', compact('admins'));
+  }
 }
