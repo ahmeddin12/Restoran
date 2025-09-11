@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admins;
 
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,9 +30,26 @@ class AdminsController extends Controller
     return redirect()->back()->with(['error' => 'error logging in']);
   }
 
-  public function dashboard(Request $request)
+  public function dashboard()
   {
-
     return view('admin.dashboard');
+  }
+
+
+
+
+  public function adminLogout(Request $request)
+  {
+    // Log out from the admin guard
+    Auth::guard('admin')->logout();
+
+    // Invalidate the session
+    $request->session()->invalidate();
+
+    // Regenerate the CSRF token
+    $request->session()->regenerateToken();
+
+    // Redirect back to the login page
+    return redirect()->route('home')->with('status', 'You have been logged out successfully!');
   }
 }
