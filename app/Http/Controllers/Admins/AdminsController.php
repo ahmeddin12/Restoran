@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Models\Food\Food;
+use App\Models\Food\Checkout;
+use App\Models\Food\Booking;
+use App\Models\Admin\Admin;
 
 
 
@@ -32,7 +36,12 @@ class AdminsController extends Controller
 
   public function dashboard()
   {
-    return view('admin.dashboard');
+
+    $foodCount = Food::select()->count();
+    $orderCount = Checkout::select()->count();
+    $bookingCount = Booking::select()->count();
+    $adminCount = Admin::select()->count();
+    return view('admin.dashboard', compact('foodCount', 'orderCount', 'bookingCount', 'adminCount'));
   }
 
 
