@@ -3,6 +3,9 @@
 use App\Http\Controllers\Foods\UsersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\CheckForAuth;
+
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -64,8 +67,17 @@ Route::group(
     }
 );
 
-Route::get('admins/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->name('view.login');
+Route::group(
+    ["prefix" => "admins", "middleware" => "auth:admin"],
+    function () {
+        Route::get('/dashboard', [App\Http\Controllers\Admins\AdminsController::class, 'dashboard'])->name('admins.dashboard');
+    }
+);
+
+Route::get('/admins/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])
+    ->middleware([CheckForAuth::class])
+    ->name('admins.login');
 
 Route::post('admins/checkLogin', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
 
-Route::get('admins/dashboard', [App\Http\Controllers\Admins\AdminsController::class, 'dashboard'])->name('admins.dashboard');
+Route::post('admins/logout', [App\Http\Controllers\Admins\AdminsController::class, 'adminLogout'])->name('admins.logout');
