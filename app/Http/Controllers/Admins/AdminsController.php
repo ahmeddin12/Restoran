@@ -6,11 +6,12 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use App\Models\Food\Food;
 use App\Models\Food\Checkout;
 use App\Models\Food\Booking;
 use App\Models\Admin\Admin;
+use Illuminate\Support\Facades\Hash;
+
 
 
 
@@ -31,7 +32,7 @@ class AdminsController extends Controller
 
       return redirect()->route('admins.dashboard');
     }
-    return redirect()->back()->with(['error' => 'error logging in']);
+    return redirect()->back()->with(['error' => 'Error logging in!']);
   }
 
   public function dashboard()
@@ -59,15 +60,48 @@ class AdminsController extends Controller
     $request->session()->regenerateToken();
 
     // Redirect back to the login page
-    return redirect()->route('home')->with('status', 'You have been logged out successfully!');
+    return redirect()->route('home');
   }
 
   public function adminList()
   {
 
 
-    $admins = Admin::select()->OrderBy('id', 'desc')->get();
+    $admins = Admin::select()->OrderBy('id')->get();
 
     return view('admin.adminList', compact('admins'));
+  }
+
+
+  public function createAdmin()
+  {
+    return view('admin.createAdmin');
+  }
+
+
+
+
+
+  public function storeAdmin(Request $request)
+  {
+
+    request()->validate([
+      'name'        => ['required', 'string', 'max:40', 'regex:/^[\pL\s]+$/u'],
+      'email'       => 'required|email|max:40',
+      'password'        => 'required|max:80',
+    ]);
+
+    $admin = Admin::create(
+      [
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make('password'),
+
+      ]
+    );
+
+    if ($admin) {
+      return redirect()->route('admins.list')->with('success', 'You created an admin succesfully!');
+    }
   }
 }
