@@ -82,3 +82,7 @@ Route::get('/admins/login', [App\Http\Controllers\Admins\AdminsController::class
 Route::post('admins/checkLogin', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
 
 Route::post('admins/logout', [App\Http\Controllers\Admins\AdminsController::class, 'adminLogout'])->name('admins.logout');
+
+Route::get('admins/create-admins', [App\Http\Controllers\Admins\AdminsController::class, 'createAdmin'])->name('admins.create');
+
+Route::post('admins/store-admins', [App\Http\Controllers\Admins\AdminsController::class, 'storeAdmin'])->name('admins.store');
