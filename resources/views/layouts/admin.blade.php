@@ -26,7 +26,7 @@
           @auth
           <ul class="navbar-nav side-nav">
             <li class="nav-item">
-              <a class="nav-link" style="margin-left: 20px;" href="index.html">Home
+              <a class="nav-link" style="margin-left: 20px;" href="{{route('admins.dashboard')}}">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -34,7 +34,7 @@
               <a class="nav-link" href="{{route('admins.list')}}" style="margin-left: 20px;">Admins</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="orders-admins/show-orders.html" style="margin-left: 20px;">Orders</a>
+              <a class="nav-link" href="{{route('admins.order')}}" style="margin-left: 20px;">Orders</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="foods-admins/show-foods.html" style="margin-left: 20px;">Foods</a>
