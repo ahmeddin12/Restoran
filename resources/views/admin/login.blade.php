@@ -6,6 +6,13 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title mt-5">Login</h5>
+        @if (\Session::has('error'))
+        <div class="alert alert-danger">
+          <ul>
+            <li>{!! \Session::get('error') !!}</li>
+          </ul>
+        </div>
+        @endif
         <form method="POST" class="p-auto" action="{{route('check.login')}}">
           @csrf
           <!-- Email input -->
