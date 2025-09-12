@@ -29,7 +29,7 @@ class AdminsController extends Controller
     $remember_me = $request->has('remember_me') ? true : false;
 
     if (auth()->guard('admin')->attempt(['email' => $request->input("email"), 'password' => $request->input("password")], $remember_me)) {
-
+      // echo "logged in";
       return redirect()->route('admins.dashboard');
     }
     return redirect()->back()->with(['error' => 'Error logging in!']);
@@ -103,5 +103,31 @@ class AdminsController extends Controller
     if ($admin) {
       return redirect()->route('admins.list')->with('success', 'You created an admin succesfully!');
     }
+  }
+
+  public function viewOrders()
+  {
+    $orders = Checkout::select()->OrderBy('id')->get();
+
+    return view('admin.viewOrder', compact('orders'));
+  }
+
+  public function editOrders($id)
+  {
+    $order = Checkout::find($id);
+
+
+    return view('admin.editOrder', compact('order'));
+  }
+
+
+  public function updateOrders(Request $request, $id)
+  {
+    $order = Checkout::find($id);
+    $order->status = $request->input('status');
+    $order->save();
+
+
+    return redirect()->route('admins.order')->with('success', 'You updated an order succesfully!');
   }
 }
