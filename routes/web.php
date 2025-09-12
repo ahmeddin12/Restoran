@@ -26,30 +26,30 @@ Route::group(["prefix" => "foods"], function () {
 
     Route::get('/food-details/{id}', [App\Http\Controllers\Foods\FoodsController::class, 'foodDetails'])->name('food.details');
 
-    Route::post('/foods/food-details/{id}', [App\Http\Controllers\Foods\FoodsController::class, 'cart'])->name('food.cart');
+    Route::post('/food-details/{id}', [App\Http\Controllers\Foods\FoodsController::class, 'cart'])->name('food.cart');
 
-    Route::get('/foods/cart', [App\Http\Controllers\Foods\FoodsController::class, 'displayCartItems'])->name('food.displayCart');
+    Route::get('/cart', [App\Http\Controllers\Foods\FoodsController::class, 'displayCartItems'])->name('food.displayCart');
 
-    Route::get('/foods/delete-cart/{id}', [App\Http\Controllers\Foods\FoodsController::class, 'deleteCartItems'])->name('food.delete.cart');
+    Route::get('/delete-cart/{id}', [App\Http\Controllers\Foods\FoodsController::class, 'deleteCartItems'])->name('food.delete.cart');
 
-    Route::post('/foods/prepare-checkout', [App\Http\Controllers\Foods\FoodsController::class, 'prepareCheckout'])->name('prepare.checkout');
+    Route::post('/prepare-checkout', [App\Http\Controllers\Foods\FoodsController::class, 'prepareCheckout'])->name('prepare.checkout');
 
-    Route::get('/foods/checkout', [App\Http\Controllers\Foods\FoodsController::class, 'checkout'])->name('foods.checkout');
+    Route::get('/checkout', [App\Http\Controllers\Foods\FoodsController::class, 'checkout'])->name('foods.checkout');
 
-    Route::post('/foods/checkout', [App\Http\Controllers\Foods\FoodsController::class, 'storeCheckout'])->name('prepare.checkout.store');
+    Route::post('/checkout', [App\Http\Controllers\Foods\FoodsController::class, 'storeCheckout'])->name('prepare.checkout.store');
 
-    Route::get('/foods/pay', [App\Http\Controllers\Foods\FoodsController::class, 'payWithPaypal'])->name('foods.pay');
+    Route::get('/pay', [App\Http\Controllers\Foods\FoodsController::class, 'payWithPaypal'])->name('foods.pay');
 
-    Route::get('/foods/success-process', [App\Http\Controllers\Foods\FoodsController::class, 'success'])->name('foods.success');
-
-
-    Route::get('/foods/success', [App\Http\Controllers\Foods\FoodsController::class, 'displaySuccess'])->name('foods.displaySuccess');
+    Route::get('/success-process', [App\Http\Controllers\Foods\FoodsController::class, 'success'])->name('foods.success');
 
 
-    Route::post('/foods/booking', [App\Http\Controllers\Foods\FoodsController::class, 'bookingTables'])->name('food.booking.table');
+    Route::get('/success', [App\Http\Controllers\Foods\FoodsController::class, 'displaySuccess'])->name('foods.displaySuccess');
 
 
-    Route::get('/foods/menu', [App\Http\Controllers\Foods\FoodsController::class, 'menu'])->name('foods.menu');
+    Route::post('/booking', [App\Http\Controllers\Foods\FoodsController::class, 'bookingTables'])->name('food.booking.table');
+
+
+    Route::get('/menu', [App\Http\Controllers\Foods\FoodsController::class, 'menu'])->name('foods.menu');
 });
 
 Route::group(
@@ -72,17 +72,22 @@ Route::group(
     function () {
         Route::get('/dashboard', [App\Http\Controllers\Admins\AdminsController::class, 'dashboard'])->name('admins.dashboard');
         Route::get('/admins-list', [App\Http\Controllers\Admins\AdminsController::class, 'adminList'])->name('admins.list');
+        Route::get('/create-admins', [App\Http\Controllers\Admins\AdminsController::class, 'createAdmin'])->name('admins.create');
+        Route::post('/checkLogin', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
+
+        Route::post('/logout', [App\Http\Controllers\Admins\AdminsController::class, 'adminLogout'])->name('admins.logout');
+
+
+        Route::post('/store-admins', [App\Http\Controllers\Admins\AdminsController::class, 'storeAdmin'])->name('admins.store');
+
+        Route::get('/all-orders', [App\Http\Controllers\Admins\AdminsController::class, 'viewOrders'])->name('admins.order');
+
+        Route::get('/edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editOrders'])->name('edit.order');
+
+        Route::post('/edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateOrders'])->name('update.order');
     }
 );
 
-Route::get('/admins/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])
-    ->middleware([CheckForAuth::class])
+
+Route::get('/admins/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->middleware([CheckForAuth::class])
     ->name('admins.login');
-
-Route::post('admins/checkLogin', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
-
-Route::post('admins/logout', [App\Http\Controllers\Admins\AdminsController::class, 'adminLogout'])->name('admins.logout');
-
-Route::get('admins/create-admins', [App\Http\Controllers\Admins\AdminsController::class, 'createAdmin'])->name('admins.create');
-
-Route::post('admins/store-admins', [App\Http\Controllers\Admins\AdminsController::class, 'storeAdmin'])->name('admins.store');
