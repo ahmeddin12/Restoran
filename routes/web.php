@@ -4,6 +4,8 @@ use App\Http\Controllers\Foods\UsersController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\CheckForAuth;
+use App\Http\Controllers\Admins\AdminsController;
+
 
 
 
@@ -67,27 +69,32 @@ Route::group(
     }
 );
 
-Route::group(
-    ["prefix" => "admins", "middleware" => "auth:admin"],
-    function () {
-        Route::get('/dashboard', [App\Http\Controllers\Admins\AdminsController::class, 'dashboard'])->name('admins.dashboard');
-        Route::get('/admins-list', [App\Http\Controllers\Admins\AdminsController::class, 'adminList'])->name('admins.list');
-        Route::get('/create-admins', [App\Http\Controllers\Admins\AdminsController::class, 'createAdmin'])->name('admins.create');
-        Route::post('/checkLogin', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
-
-        Route::post('/logout', [App\Http\Controllers\Admins\AdminsController::class, 'adminLogout'])->name('admins.logout');
 
 
-        Route::post('/store-admins', [App\Http\Controllers\Admins\AdminsController::class, 'storeAdmin'])->name('admins.store');
-
-        Route::get('/all-orders', [App\Http\Controllers\Admins\AdminsController::class, 'viewOrders'])->name('admins.order');
-
-        Route::get('/edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editOrders'])->name('edit.order');
-
-        Route::post('/edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateOrders'])->name('update.order');
-    }
-);
 
 
-Route::get('/admins/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->middleware([CheckForAuth::class])
+// Admin login page
+Route::get('/admins/login', [AdminsController::class, 'viewLogin'])
+    ->middleware('check.admin.auth')
     ->name('admins.login');
+
+// Admin login POST
+Route::post('/admins/login', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
+// Admin logout
+Route::post('/admins/logout', [App\Http\Controllers\Admins\AdminsController::class, 'adminLogout'])
+    ->middleware('admin.auth')
+    ->name('admins.logout');
+
+// Protected admin routes
+Route::prefix('admins')->middleware('admin.auth')->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\Admins\AdminsController::class, 'dashboard'])->name('admins.dashboard');
+    Route::get('/admins-list', [App\Http\Controllers\Admins\AdminsController::class, 'adminList'])->name('admins.list');
+    Route::get('/all-orders', [App\Http\Controllers\Admins\AdminsController::class, 'viewOrders'])->name('admins.order');
+    Route::get('/all-bookings', [App\Http\Controllers\Admins\AdminsController::class, 'viewBookings'])->name('admins.bookings');
+
+    Route::get('/create-admins', [App\Http\Controllers\Admins\AdminsController::class, 'createAdmin'])->name('admins.create');
+    Route::post('/store-admins', [App\Http\Controllers\Admins\AdminsController::class, 'storeAdmin'])->name('admins.store');
+
+    Route::get('/edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editOrders'])->name('edit.order');
+    Route::post('/edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateOrders'])->name('update.order');
+});
