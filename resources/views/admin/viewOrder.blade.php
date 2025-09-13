@@ -29,7 +29,6 @@
               <th scope="col">Status</th>
               <th scope="col">Change Status</th>
               <th scope="col">Delete</th>
-
             </tr>
           </thead>
           <tbody>
