@@ -23,7 +23,8 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarText">
-          @auth
+
+          @auth('admin')
           <ul class="navbar-nav side-nav">
             <li class="nav-item">
               <a class="nav-link" style="margin-left: 20px;" href="{{route('admins.dashboard')}}">Home
@@ -37,10 +38,10 @@
               <a class="nav-link" href="{{route('admins.order')}}" style="margin-left: 20px;">Orders</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="foods-admins/show-foods.html" style="margin-left: 20px;">Foods</a>
+              <a class="nav-link" href="#" style="margin-left: 20px;">Foods</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="bookings-admins/show-bookings.html" style="margin-left: 20px;">Bookings</a>
+              <a class="nav-link" href="{{route('admins.bookings')}}" style="margin-left: 20px;">Bookings</a>
             </li>
           </ul>
           @endauth
