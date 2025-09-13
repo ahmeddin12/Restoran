@@ -29,8 +29,8 @@ class AdminsController extends Controller
     $remember_me = $request->has('remember_me') ? true : false;
 
     if (auth()->guard('admin')->attempt(['email' => $request->input("email"), 'password' => $request->input("password")], $remember_me)) {
-      echo "logged in";
-      // return redirect()->route('admins.dashboard');
+
+      return redirect()->route('admins.dashboard');
     }
     return redirect()->back()->with(['error' => 'Error logging in!']);
   }
