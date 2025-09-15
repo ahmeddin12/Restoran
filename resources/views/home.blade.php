@@ -183,7 +183,7 @@
                                 <img class="flex-shrink-0 img-fluid rounded" src="{{ asset('assets/img/' . $food->image) }}" alt="" style="width: 80px;">
                                 <div class="w-100 d-flex flex-column text-start ps-4">
                                     <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                        <span>{{$food->title}}</span>
+                                        <span>{{$food->name}}</span>
                                         <span class="text-primary">${{$food->price}}</span>
                                     </h5>
                                     <small class="fst-italic">{{substr($food->description, 0, 70)}}</small>
@@ -202,7 +202,7 @@
                                 <img class="flex-shrink-0 img-fluid rounded" src="{{ asset('assets/img/' . $food->image) }}" alt="" style="width: 80px;">
                                 <div class="w-100 d-flex flex-column text-start ps-4">
                                     <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                        <span>{{$food->title}}</span>
+                                        <span>{{$food->name}}</span>
                                         <span class="text-primary">${{$food->price}}</span>
                                     </h5>
                                     <small class="fst-italic">{{substr($food->description, 0, 70)}}</small>
@@ -221,7 +221,7 @@
                                 <img class="flex-shrink-0 img-fluid rounded" src="{{ asset('assets/img/' . $food->image) }}" alt="Food Image" style="width: 80px;">
                                 <div class="w-100 d-flex flex-column text-start ps-4">
                                     <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                        <span>{{$food->title}}</span>
+                                        <span>{{$food->name}}</span>
                                         <span class="text-primary">${{$food->price}}</span>
                                     </h5>
                                     <small class="fst-italic">{{substr($food->description, 0, 70)}}</small>

@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <h1 class="mb-4">{{$fooditem->title}}</h1>
+                <h1 class="mb-4">{{$fooditem->name}}</h1>
                 <p class="mb-4">{{$fooditem->description}}</p>
                 <div class="row g-4 mb-4">
                     <div class="col-sm-6">
