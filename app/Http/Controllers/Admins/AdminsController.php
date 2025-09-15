@@ -105,14 +105,16 @@ class AdminsController extends Controller
     }
   }
 
+
+  // orders
   public function viewOrders()
   {
     $orders = Checkout::select()->OrderBy('id')->get();
 
-    return view('admin.viewOrder', compact('orders'));
+    return view('admin.viewOrders', compact('orders'));
   }
 
-  public function editOrders($id)
+  public function editOrder($id)
   {
     $order = Checkout::find($id);
 
@@ -121,7 +123,7 @@ class AdminsController extends Controller
   }
 
 
-  public function updateOrders(Request $request, $id)
+  public function updateOrder(Request $request, $id)
   {
     $order = Checkout::find($id);
     $order->status = $request->input('status');
@@ -131,11 +133,46 @@ class AdminsController extends Controller
     return redirect()->route('admins.order')->with('success', 'You updated an order succesfully!');
   }
 
+  public function deleteOrder($id)
+  {
+    $order = Checkout::find($id);
+    $order->delete();
 
+    return redirect()->route('admins.order')->with('delete', 'You deleted an order succesfully!');
+  }
+
+
+  //bookings
   public function viewBookings()
   {
     $bookings = Booking::select()->OrderBy('id')->get();
 
-    return view('admin.viewBooking', compact('bookings'));
+    return view('admin.viewBookings', compact('bookings'));
+  }
+
+  public function editBooking($id)
+  {
+    $booking = Booking::find($id);
+
+
+    return view('admin.editBooking', compact('booking'));
+  }
+
+  public function updateBooking(Request $request, $id)
+  {
+    $booking = Booking::find($id);
+    $booking->status = $request->input('status');
+    $booking->save();
+
+
+    return redirect()->route('admins.bookings')->with('success', 'You updated a booking succesfully!');
+  }
+
+  public function deleteBooking($id)
+  {
+    $order = Booking::find($id);
+    $order->delete();
+
+    return redirect()->route('admins.bookings')->with('delete', 'You deleted a booking succesfully!');
   }
 }
