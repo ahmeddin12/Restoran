@@ -101,9 +101,14 @@ Route::prefix('admins')->middleware('admin.auth')->group(function () {
     Route::get('/delete-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteOrder'])->name('delete.order');
 
 
-    //booking
+    //bookings
     Route::get('/all-bookings', [App\Http\Controllers\Admins\AdminsController::class, 'viewBookings'])->name('admins.bookings');
     Route::get('/edit-booking/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editBooking'])->name('edit.booking');
     Route::post('/edit-booking/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateBooking'])->name('update.booking');
     Route::get('/delete-booking/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteBooking'])->name('delete.booking');
+
+
+    //foods
+
+    Route::get('/all-foods', [App\Http\Controllers\Admins\AdminsController::class, 'viewFoods'])->name('admins.foods');
 });
