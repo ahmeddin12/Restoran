@@ -111,4 +111,10 @@ Route::prefix('admins')->middleware('admin.auth')->group(function () {
     //foods
 
     Route::get('/all-foods', [App\Http\Controllers\Admins\AdminsController::class, 'viewFoods'])->name('admins.foods');
+
+    Route::get('/create-food', [App\Http\Controllers\Admins\AdminsController::class, 'createFood'])->name('create.food');
+
+    Route::post('/store-food', [App\Http\Controllers\Admins\AdminsController::class, 'storeFood'])->name('store.food');
+
+    Route::get('/delete-food/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteFood'])->name('delete.food');
 });
