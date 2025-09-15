@@ -78,23 +78,32 @@ Route::get('/admins/login', [AdminsController::class, 'viewLogin'])
     ->middleware('check.admin.auth')
     ->name('admins.login');
 
-// Admin login POST
+//admin login POST
 Route::post('/admins/login', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
-// Admin logout
+//admin logout
 Route::post('/admins/logout', [App\Http\Controllers\Admins\AdminsController::class, 'adminLogout'])
     ->middleware('admin.auth')
     ->name('admins.logout');
 
-// Protected admin routes
+//protected admin routes
 Route::prefix('admins')->middleware('admin.auth')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admins\AdminsController::class, 'dashboard'])->name('admins.dashboard');
-    Route::get('/admins-list', [App\Http\Controllers\Admins\AdminsController::class, 'adminList'])->name('admins.list');
-    Route::get('/all-orders', [App\Http\Controllers\Admins\AdminsController::class, 'viewOrders'])->name('admins.order');
-    Route::get('/all-bookings', [App\Http\Controllers\Admins\AdminsController::class, 'viewBookings'])->name('admins.bookings');
 
+    //admin
+    Route::get('/admins-list', [App\Http\Controllers\Admins\AdminsController::class, 'adminList'])->name('admins.list');
     Route::get('/create-admins', [App\Http\Controllers\Admins\AdminsController::class, 'createAdmin'])->name('admins.create');
     Route::post('/store-admins', [App\Http\Controllers\Admins\AdminsController::class, 'storeAdmin'])->name('admins.store');
 
-    Route::get('/edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editOrders'])->name('edit.order');
-    Route::post('/edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateOrders'])->name('update.order');
+    //orders
+    Route::get('/all-orders', [App\Http\Controllers\Admins\AdminsController::class, 'viewOrders'])->name('admins.orders');
+    Route::get('/edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editOrder'])->name('edit.order');
+    Route::post('/edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateOrder'])->name('update.order');
+    Route::get('/delete-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteOrder'])->name('delete.order');
+
+
+    //booking
+    Route::get('/all-bookings', [App\Http\Controllers\Admins\AdminsController::class, 'viewBookings'])->name('admins.bookings');
+    Route::get('/edit-booking/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editBooking'])->name('edit.booking');
+    Route::post('/edit-booking/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateBooking'])->name('update.booking');
+    Route::get('/delete-booking/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteBooking'])->name('delete.booking');
 });
