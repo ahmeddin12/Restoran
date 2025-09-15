@@ -6,9 +6,22 @@
   <div class="col">
     <div class="card">
       <div class="card-body">
+        @if (\Session::has('success'))
+        <div class="alert alert-success">
+          <ul>
+            <li>{!! \Session::get('success') !!}</li>
+          </ul>
+        </div>
+        @endif
+        @if (\Session::has('delete'))
+        <div class="alert alert-success">
+          <ul>
+            <li>{!! \Session::get('delete') !!}</li>
+          </ul>
+        </div>
+        @endif
         <h5 class="card-title mb-4 d-inline">Foods</h5>
-        <a href="create-foods.html" class="btn btn-primary mb-4 text-center float-right">Create Foods</a>
-
+        <a href="{{route('create.food')}}" class="btn btn-primary mb-4 text-center float-right">Create Foods</a>
         <table class="table">
           <thead>
             <tr>
@@ -23,10 +36,10 @@
             @foreach ($foods as $food)
             <tr>
               <td scope="row">1</td>
-              <td>{{$food->title}}</td>
+              <td>{{$food->name}}</td>
               <td><img width="60" height="60" src="{{ asset('assets/img/' . $food->image) }}" alt="Food Image"></td>
               <td>${{$food->price}}</td>
-              <td><a href="delete-posts.html" class="btn btn-danger  text-center ">delete</a></td>
+              <td><a href="{{route('delete.food', $food->id)}}" class="btn btn-danger  text-center ">delete</a></td>
             </tr>
             @endforeach
           </tbody>
