@@ -14,6 +14,13 @@
           </ul>
         </div>
         @endif
+        @if (\Session::has('delete'))
+        <div class="alert alert-success">
+          <ul>
+            <li>{!! \Session::get('delete') !!}</li>
+          </ul>
+        </div>
+        @endif
         <h5 class="card-title mb-4 d-inline">Orders</h5>
 
         <table class="table">
@@ -43,7 +50,7 @@
               <td>${{ $order->price }}</td>
               <td>{{ $order->status }}</td>
               <td><a href="{{ route('edit.order', $order->id) }}" class="btn btn-warning text-white  text-center ">Change Status</a></td>
-              <td><a href="#" class="btn btn-danger  text-center ">delete</a></td>
+              <td><a href="{{ route('delete.order', $order->id) }}" class="btn btn-danger  text-center ">delete</a></td>
             </tr>
             @endforeach
           </tbody>
