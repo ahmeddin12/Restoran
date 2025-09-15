@@ -11,7 +11,7 @@ use App\Models\Food\Checkout;
 use App\Models\Food\Booking;
 use App\Models\Admin\Admin;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\File;
 
 
 
@@ -184,5 +184,55 @@ class AdminsController extends Controller
     $foods = Food::select()->OrderBy('id')->get();
 
     return view('admin.viewFoods', compact('foods'));
+  }
+
+  public function createFood()
+  {
+
+    return view('admin.createFood');
+  }
+
+  public function storeFood(Request $request)
+  {
+
+
+    $destinationPath = 'assets/img/';
+    $myimage = $request->image->getClientOriginalName();
+    $request->image->move(public_path($destinationPath), $myimage);
+
+    $request->validate([
+      'name' => 'required|string|max:255',
+      'price' => 'required|numeric|min:0',
+      'category' => 'required|string|max:255',
+      'description' => 'required|string',
+      'image' => 'nullable',
+    ]);
+
+    $food = Food::create(
+      [
+        'name' => $request->name,
+        'price' => $request->price,
+        'category' => $request->category,
+        'description' => $request->description,
+        'image' => $myimage,
+      ]
+    );
+
+    if ($food) {
+      return redirect()->route('admins.foods')->with('success', 'Food item added succesfully!');
+    }
+  }
+
+  public function deleteFood($id)
+  {
+    $food = Food::find($id);
+    if (File::exists(public_path('assets/img/' . $food->image))) {
+      File::delete(public_path('assets/img/' . $food->image));
+    } else {
+      //dd('File does not exists.');
+    }
+    $food->delete();
+
+    return redirect()->route('admins.foods')->with('delete', 'You deleted a food succesfully!');
   }
 }
