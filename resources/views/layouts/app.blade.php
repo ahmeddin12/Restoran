@@ -60,10 +60,10 @@
                         <a href="{{route('contact')}}" class="nav-item nav-link">Contact</a>
                         @guest
                         @if (Route::has('login'))
-                        <a href="login.html" class="nav-item nav-link">Login</a>
+                        <a href="{{route('login')}}" class="nav-item nav-link">Login</a>
                         @endif
                         @if (Route::has('register'))
-                        <a href="register.html" class="nav-item nav-link">Register</a>
+                        <a href="{{route('register')}}" class="nav-item nav-link">Register</a>
                         @endif
                         @else
                         <a href="{{route('food.displayCart')}}" class="nav-item nav-link"><i class="fa-sharp fa-solid fa-cart-shopping"></i>Cart</a>
