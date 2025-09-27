@@ -23,6 +23,7 @@ class FoodsController extends Controller
         if ($currentUser) {
 
             $cartVarifying = Cart::where('food_id', $id)->where('user_id', Auth::user()->id)->count();
+            return view('foods.food-details', compact('fooditem', 'cartVarifying'));
         } else {
 
             return view('foods.food-details', compact('fooditem'));
