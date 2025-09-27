@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container-xxl py-5 bg-dark hero-header mb-5" style="margin-top: -25px">
     <div class="container text-center my-5 pt-5 pb-4">
@@ -27,7 +26,7 @@
             <div class="col-md-6">
                 <div class="row g-3">
                     <div class="col-12 text-start">
-                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="{{asset('assets/'.$fooditem->image.'')}}">
+                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="{{asset('assets/img/'.$fooditem->image.'')}}">
                     </div>
 
                 </div>
@@ -48,7 +47,7 @@
                     @csrf
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                     <input type="hidden" name="food_id" value="{{$fooditem->id}}">
-                    <input type="hidden" name="name" value="{{$fooditem->title}}">
+                    <input type="hidden" name="name" value="{{$fooditem->name}}">
                     <input type="hidden" name="image" value="{{$fooditem->image}}">
                     <input type="hidden" name="price" value="{{$fooditem->price}}">
                     @if($cartVarifying > 0)
