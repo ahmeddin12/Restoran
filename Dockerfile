@@ -19,14 +19,24 @@ COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
  && apt-get install -y nodejs
 
+
+
 WORKDIR /var/www/html
 
-# Copy composer files first for dependency caching
+# Copy composer files for caching
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
 
-# Copy rest of the project
+# Install dependencies without running post-autoload scripts
+RUN composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader --no-scripts
+
+# Copy full project
 COPY . .
+
+# Run artisan commands now that files exist
+RUN php artisan config:clear
+RUN php artisan route:cache
+
+# Continue with Node build and permissions...
 
 # Build frontend assets (if package.json exists)
 RUN if [ -f package.json ]; then npm ci && npm run build; fi
