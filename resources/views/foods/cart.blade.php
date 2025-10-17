@@ -36,7 +36,7 @@
                 @if($cartItems->count() > 0)
                 @foreach($cartItems as $food)
                 <tr>
-                    <th><img width="40" height="40" src="{{asset('assets/'.$food->image.'')}}" </th>
+                    <th><img width="40" height="40" src="{{asset('assets/img/'.$food->image.'')}}" </th>
                     <td>{{$food->name}}</td>
                     <td>${{$food->price}}</td>
                     <td><a href="{{route('food.delete.cart' , $food->food_id)}}" class="btn btn-danger text-white">delete</td>
