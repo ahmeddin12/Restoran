@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+    app:
+        build: .
+        ports:
+            - "8000:8000"
+        environment:
+            APP_ENV: production
+            APP_DEBUG: false
+            APP_KEY: base64:YOUR_GENERATED_KEY
+            DB_CONNECTION: pgsql
+            DB_HOST: db
+            DB_PORT: 5432
+            DB_DATABASE: restoran_db
+            DB_USERNAME: postgres
+            DB_PASSWORD: secret
+        depends_on:
+            - db
+
+    db:
+        image: postgres:15
+        environment:
+            POSTGRES_DB: restoran_db
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: secret
+        ports:
+            - "5432:5432"
