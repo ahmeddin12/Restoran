@@ -38,6 +38,9 @@ RUN php artisan route:cache
 
 # Continue with Node build and permissions...
 
+# Update Apache config to use public folder
+RUN sed -i 's#/var/www/html#/var/www/html/public#g' /etc/apache2/sites-available/000-default.conf
+
 # Build frontend assets (if package.json exists)
 RUN if [ -f package.json ]; then npm ci && npm run build; fi
 
