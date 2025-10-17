@@ -1,7 +1,7 @@
 services:
   - type: web
     name: restoran
-    env: php
+    runtime: php
     buildCommand: |
       composer install
       php artisan key:generate
@@ -14,5 +14,3 @@ services:
         value: false
       - key: APP_URL
         value: https://restoran.onrender.com
-      - key: APP_KEY
-        value: # will be filled after first build
