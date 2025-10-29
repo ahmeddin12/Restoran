@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy via myre.page.gd
+    name: Deploy to myre.page.gd
     runs-on: ubuntu-latest
 
     steps:
