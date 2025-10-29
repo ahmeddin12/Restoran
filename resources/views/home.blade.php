@@ -8,7 +8,8 @@
         <div class="row align-items-center g-5">
             <div class="col-lg-6 text-center text-lg-start">
                 <h1 class="display-3 text-white animated slideInLeft">Enjoy Our<br>Delicious Meal</h1>
-                <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                <p class="text-white animated slideInLeft mb-4 pb-2"> Experience the finest flavors crafted by our expert chefs. From breakfast to dinner, each dish is prepared with fresh ingredients, care, and passion to create unforgettable culinary experiences.
+                </p>
                 <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
             </div>
             <div class="col-lg-6 text-center text-lg-end overflow-hidden">
@@ -47,7 +48,7 @@
                     <div class="p-4">
                         <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
                         <h5>Master Chefs</h5>
-                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <p>Our team of 50+ professional chefs brings creativity and skill to every dish, ensuring top-notch culinary experiences.</p>
                     </div>
                 </div>
             </div>
@@ -56,30 +57,31 @@
                     <div class="p-4">
                         <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
                         <h5>Quality Food</h5>
-                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <p>We use only the freshest, locally-sourced ingredients to deliver authentic flavors and wholesome meals.</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="service-item rounded pt-3">
-                    <div class="p-4">
+                <p class="service-item rounded pt-3">
+                    < class="p-4">
                         <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
                         <h5>Online Order</h5>
-                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <div class="service-item rounded pt-3">
-                    <div class="p-4">
-                        <i class="fa fa-3x fa-headset text-primary mb-4"></i>
-                        <h5>24/7 Service</h5>
-                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
-                    </div>
-                </div>
+                        <p>Convenient online ordering with fast delivery ensures you enjoy your favorite meals anytime, anywhere.</p>
+                </p>
             </div>
         </div>
     </div>
+    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+        <div class="service-item rounded pt-3">
+            <div class="p-4">
+                <i class="fa fa-3x fa-headset text-primary mb-4"></i>
+                <h5>24/7 Service</h5>
+                <p>Our friendly customer service team is available around the clock to assist with reservations and inquiries.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 </div>
 <!-- Service End -->
 
@@ -107,8 +109,8 @@
             <div class="col-lg-6">
                 <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
                 <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Restoran</h1>
-                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.</p>
-                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                <p class="mb-4">At Restoran, we craft every meal with passion and precision. Our dishes combine fresh, high-quality ingredients with culinary creativity to provide an unforgettable dining experience.</p>
+                <p class="mb-4">Whether enjoying a family dinner, celebrating a special occasion, or grabbing a quick bite, our restaurant offers a warm, inviting atmosphere and flavors that delight every guest.</p>
                 <div class="row g-4 mb-4">
                     <div class="col-sm-6">
                         <div class="d-flex align-items-center border-start border-5 border-primary px-3">
@@ -359,8 +361,8 @@
                     <div class="rounded-circle overflow-hidden m-4">
                         <img class="img-fluid" src="{{asset('assets/img/team-1.jpg')}}" alt="">
                     </div>
-                    <h5 class="mb-0">Full Name</h5>
-                    <small>Designation</small>
+                    <h5 class="mb-0">Hasan Zaid</h5>
+                    <small>Head Chef</small>
                     <div class="d-flex justify-content-center mt-3">
                         <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -373,8 +375,8 @@
                     <div class="rounded-circle overflow-hidden m-4">
                         <img class="img-fluid" src="{{asset('assets/img/team-2.jpg')}}" alt="">
                     </div>
-                    <h5 class="mb-0">Full Name</h5>
-                    <small>Designation</small>
+                    <h5 class="mb-0">Yusuf Amin</h5>
+                    <small>Pastry Chef</small>
                     <div class="d-flex justify-content-center mt-3">
                         <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -387,8 +389,8 @@
                     <div class="rounded-circle overflow-hidden m-4">
                         <img class="img-fluid" src="{{asset('assets/img/team-3.jpg')}}" alt="">
                     </div>
-                    <h5 class="mb-0">Full Name</h5>
-                    <small>Designation</small>
+                    <h5 class="mb-0">Omar Farouk</h5>
+                    <small>Sous Chef</small>
                     <div class="d-flex justify-content-center mt-3">
                         <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -429,7 +431,7 @@
                 <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                 <p>{{$review->review}}</p>
                 <div class="d-flex align-items-center">
-                    <!-- <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('assets/img/testimonial-1.jpg')}}" style="width: 50px; height: 50px;"> -->
+                    <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('assets/img/' . $review->image) }}" style="width: 50px; height: 50px;">
                     <div class="ps-3">
                         <h5 class="mb-1">{{$review->name}}</h5>
                     </div>
