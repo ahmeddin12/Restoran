@@ -63,10 +63,11 @@
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                 <p class="service-item rounded pt-3">
-                    < class="p-4">
-                        <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
-                        <h5>Online Order</h5>
-                        <p>Convenient online ordering with fast delivery ensures you enjoy your favorite meals anytime, anywhere.</p>
+                <div class="p-4">
+                    <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
+                    <h5>Online Order</h5>
+                    <p>Convenient online ordering with fast delivery ensures you enjoy your favorite meals anytime, anywhere.</p>
+                </div>
                 </p>
             </div>
         </div>
@@ -375,7 +376,7 @@
                     <div class="rounded-circle overflow-hidden m-4">
                         <img class="img-fluid" src="{{asset('assets/img/team-2.jpg')}}" alt="">
                     </div>
-                    <h5 class="mb-0">Yusuf Amin</h5>
+                    <h5 class="mb-0">Kian Mercer</h5>
                     <small>Pastry Chef</small>
                     <div class="d-flex justify-content-center mt-3">
                         <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -389,7 +390,7 @@
                     <div class="rounded-circle overflow-hidden m-4">
                         <img class="img-fluid" src="{{asset('assets/img/team-3.jpg')}}" alt="">
                     </div>
-                    <h5 class="mb-0">Omar Farouk</h5>
+                    <h5 class="mb-0">Jasper Cole</h5>
                     <small>Sous Chef</small>
                     <div class="d-flex justify-content-center mt-3">
                         <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -403,8 +404,8 @@
                     <div class="rounded-circle overflow-hidden m-4">
                         <img class="img-fluid" src="{{ asset('assets/img/team-4.jpg') }}" alt="">
                     </div>
-                    <h5 class="mb-0">Full Name</h5>
-                    <small>Designation</small>
+                    <h5 class="mb-0">Oumer Zidan</h5>
+                    <small>Grill Master</small>
                     <div class="d-flex justify-content-center mt-3">
                         <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -436,8 +437,8 @@
                         <h5 class="mb-1">{{$review->name}}</h5>
                     </div>
                 </div>
-                @endforeach
             </div>
+            @endforeach
 
         </div>
     </div>
