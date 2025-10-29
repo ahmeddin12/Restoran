@@ -14,10 +14,12 @@ Options -Indexes
     Require all denied
 </Files>
 
-# Optional: redirect www to non-www
-# RewriteEngine On
-# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-# RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+# Enable URL rewriting for Laravel
+<IfModule mod_rewrite.c>
+    RewriteEngine On
 
-# Optional: Custom error page
-# ErrorDocument 404 /index.php
+    # Redirect all requests to index.php if not a real file or directory
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>
