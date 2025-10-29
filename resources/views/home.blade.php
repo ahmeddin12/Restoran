@@ -64,7 +64,7 @@
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                 <p class="service-item rounded pt-3">
                 <div class="p-4">
-                    <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
+                    <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
                     <h5>Online Order</h5>
                     <p>Convenient online ordering with fast delivery ensures you enjoy your favorite meals anytime, anywhere.</p>
                 </div>
@@ -73,7 +73,7 @@
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
                 <p class="service-item rounded pt-3">
                 <div class="p-4">
-                    <i class="fa fa-3x fa-headset text-primary mb-4"></i>
+                    <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
                     <h5>24/7 Service</h5>
                     <p>Our friendly customer service team is available around the clock to assist with reservations and inquiries.</p>
                 </div>
