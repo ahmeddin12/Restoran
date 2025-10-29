@@ -1,3 +1,23 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On RewriteRule ^(.*)$ public/$1 [L]
-</IfModule>
+# Disable directory listing
+Options -Indexes
+
+# Deny access to sensitive folders
+<Directory "storage">
+    Require all denied
+</Directory>
+<Directory "bootstrap">
+    Require all denied
+</Directory>
+
+# Deny access to .env
+<Files .env>
+    Require all denied
+</Files>
+
+# Optional: redirect www to non-www
+# RewriteEngine On
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Optional: Custom error page
+# ErrorDocument 404 /index.php
