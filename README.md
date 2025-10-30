@@ -3,6 +3,8 @@
 A fully-featured restaurant management web application built with Laravel.  
 This app allows users to browse the menu, add foods to the cart, place orders with payment, leave reviews, and admins to manage the system.
 
+🚀Live Demo: https://myre.page.gd/
+
 ---
 
 ## Table of Contents
