@@ -44,8 +44,9 @@ This app allows users to browse the menu, add foods to the cart, place orders wi
 
 -   Backend: PHP 8.x, Laravel 10
 -   Frontend: Blade Templates, Tailwind CSS / Bootstrap (mobile responsive)
--   Database: MySQL (`restoran`)
--   Other Tools: Composer, Artisan commands,
+-   Database: MySQL 
+-   Other Tools: Git, Github, CI/CD actions, Composer, Artisan commands
+-   Deployment: Infinity-free (using github actions)
 
 ---
 
