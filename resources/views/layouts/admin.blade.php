@@ -69,7 +69,11 @@
               <a class="nav-link {{ request()->routeIs('admins.dashboard') ? 'active' : '' }}" style="margin-left: 20px;" href="{{route('admins.dashboard')}}"><i class="fa-solid fa-gauge-high mr-2"></i> Home
                 <span class="sr-only">(current)</span>
               </a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link {{ request()->routeIs('admins.users.*') ? 'active' : '' }}" href="{{route('admins.users.list')}}" style="margin-left: 20px;"><i class="fa-solid fa-users mr-2"></i> Users</a>
             </li>
+            
             <li class="nav-item">
               <a class="nav-link {{ request()->routeIs('admins.list') ? 'active' : '' }}" href="{{route('admins.list')}}" style="margin-left: 20px;"><i class="fa-solid fa-user-shield mr-2"></i> Admins</a>
             </li>
@@ -81,9 +85,6 @@
             </li>
             <li class="nav-item">
               <a class="nav-link {{ request()->routeIs('admins.bookings') ? 'active' : '' }}" href="{{route('admins.bookings')}}" style="margin-left: 20px;"><i class="fa-solid fa-calendar-check mr-2"></i> Bookings</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {{ request()->routeIs('admins.users.*') ? 'active' : '' }}" href="{{route('admins.users.list')}}" style="margin-left: 20px;"><i class="fa-solid fa-users mr-2"></i> Users</a>
             </li>
           </ul>
           @endauth
