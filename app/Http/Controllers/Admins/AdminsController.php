@@ -10,6 +10,7 @@ use App\Models\Food\Food;
 use App\Models\Food\Checkout;
 use App\Models\Food\Booking;
 use App\Models\Admin\Admin;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 
@@ -136,6 +137,68 @@ class AdminsController extends Controller
     $admin = Admin::findOrFail($id);
     $admin->delete();
     return redirect()->route('admins.list')->with('delete', 'Admin deleted successfully!');
+  }
+
+  // users CRUD for regular application users
+  public function usersList()
+  {
+    $users = User::select()->orderBy('id')->get();
+    return view('admin.usersList', compact('users'));
+  }
+
+  public function createUser()
+  {
+    return view('admin.createUser');
+  }
+
+  public function storeUser(Request $request)
+  {
+    $request->validate([
+      'name' => ['required', 'string', 'max:255'],
+      'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+      'password' => ['required', 'min:6', 'max:80'],
+    ]);
+
+    User::create([
+      'name' => $request->name,
+      'email' => $request->email,
+      'password' => Hash::make($request->password),
+    ]);
+
+    return redirect()->route('admins.users.list')->with('success', 'User created successfully!');
+  }
+
+  public function editUser($id)
+  {
+    $user = User::findOrFail($id);
+    return view('admin.editUser', compact('user'));
+  }
+
+  public function updateUser(Request $request, $id)
+  {
+    $user = User::findOrFail($id);
+
+    $request->validate([
+      'name' => ['required', 'string', 'max:255'],
+      'email' => ['required', 'email', 'max:255', 'unique:users,email,' . $user->id],
+      'password' => ['nullable', 'min:6', 'max:80'],
+    ]);
+
+    $user->name = $request->name;
+    $user->email = $request->email;
+    if ($request->filled('password')) {
+      $user->password = Hash::make($request->password);
+    }
+    $user->save();
+
+    return redirect()->route('admins.users.list')->with('success', 'User updated successfully!');
+  }
+
+  public function deleteUser($id)
+  {
+    $user = User::findOrFail($id);
+    $user->delete();
+    return redirect()->route('admins.users.list')->with('delete', 'User deleted successfully!');
   }
 
 

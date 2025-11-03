@@ -97,6 +97,14 @@ Route::prefix('admins')->middleware('admin.auth')->group(function () {
     Route::post('/update-admins/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateAdmin'])->name('admins.update');
     Route::get('/delete-admins/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteAdmin'])->name('admins.delete');
 
+    // users (manage regular app users)
+    Route::get('/users-list', [App\Http\Controllers\Admins\AdminsController::class, 'usersList'])->name('admins.users.list');
+    Route::get('/create-user', [App\Http\Controllers\Admins\AdminsController::class, 'createUser'])->name('admins.users.create');
+    Route::post('/store-user', [App\Http\Controllers\Admins\AdminsController::class, 'storeUser'])->name('admins.users.store');
+    Route::get('/edit-user/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editUser'])->name('admins.users.edit');
+    Route::post('/update-user/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateUser'])->name('admins.users.update');
+    Route::get('/delete-user/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteUser'])->name('admins.users.delete');
+
     //orders
     Route::get('/all-orders', [App\Http\Controllers\Admins\AdminsController::class, 'viewOrders'])->name('admins.order');
     Route::get('/edit-order/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editOrder'])->name('edit.order');
