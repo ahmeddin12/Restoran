@@ -81,7 +81,7 @@ Route::get('/admins/login', [AdminsController::class, 'viewLogin'])
 //admin login POST
 Route::post('/admins/login', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
 //admin logout
-Route::post('/admins/dashboard', [App\Http\Controllers\Admins\AdminsController::class, 'adminLogout'])
+Route::post('/admins/login', [App\Http\Controllers\Admins\AdminsController::class, 'adminLogout'])
     ->middleware('admin.auth')
     ->name('admins.logout');
 
