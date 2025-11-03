@@ -6,8 +6,8 @@
     <h1 class="display-3 text-white mb-3 animated slideInDown">Pay with Paypal</h1>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb justify-content-center text-uppercase">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Pay with Paypal</a></li>
+        <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+        <li class="breadcrumb-item">Pay with Paypal</li>
       </ol>
     </nav>
   </div>
