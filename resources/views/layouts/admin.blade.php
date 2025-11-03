@@ -68,11 +68,11 @@
                 <form id="admin-logout-form" action="{{ route('admins.logout') }}" method="POST" class="d-none">
                   @csrf
                 </form>
-
+              </div>
             </li>
             @else
             <li class="nav-item">
-              <a class="nav-link" href="admins/login-admins.html">login
+              <a class="nav-link" href="{{ route('admins.login') }}">login
               </a>
             </li>
             @endauth
