@@ -43,6 +43,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{{route('admins.bookings')}}" style="margin-left: 20px;">Bookings</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('admins.users.list')}}" style="margin-left: 20px;">Users</a>
+            </li>
           </ul>
           @endauth
 
