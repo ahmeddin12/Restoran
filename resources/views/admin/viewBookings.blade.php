@@ -14,7 +14,7 @@
         </div>
         @endif
         @if (\Session::has('delete'))
-        <div class="alert alert-danger">
+        <div class="alert alert-success">
           <ul>
             <li>{!! \Session::get('delete') !!}</li>
           </ul>
@@ -32,7 +32,7 @@
               <th scope="col">Number of people</th>
               <th scope="col">Special request</th>
               <th scope="col">Status</th>
-              <th scope="col">Change Statust</th>
+              <th scope="col">Change Status</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
