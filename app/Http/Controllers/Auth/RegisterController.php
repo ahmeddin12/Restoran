@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -96,33 +99,62 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
+        // Pre-registration: store data temporarily and email a confirmation link
+        $token = Str::random(40);
+        $payload = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ];
+
+        Cache::put('pre_reg_' . $token, $payload, now()->addMinutes(60));
+
+        $confirmUrl = route('register.confirm', ['token' => $token]);
+
+        // Send a simple confirmation email with the confirmation link
+        Mail::raw("Please confirm your registration by clicking this link: " . $confirmUrl, function ($message) use ($payload) {
+            $message->to($payload['email'])
+                ->subject('Confirm your registration');
+        });
+
+        // Show a neutral page asking user to check their email
+        return redirect()->route('verification.notice')->with('resent', true);
+    }
+
+    /**
+     * Handle click from pre-registration confirmation email.
+     */
+    public function confirm(Request $request)
+    {
+        $token = $request->route('token');
+        $payload = Cache::pull('pre_reg_' . $token);
+
+        if (!$payload) {
+            return redirect()->route('register')->withErrors(['email' => 'The confirmation link is invalid or expired.']);
+        }
+
         DB::beginTransaction();
-
         try {
-            $user = $this->create($request->all());
+            $user = User::create([
+                'name' => $payload['name'],
+                'email' => $payload['email'],
+                'password' => Hash::make($payload['password']),
+            ]);
 
-            if ($user instanceof MustVerifyEmail) {
-                // Attempt to send verification email; if it fails, rollback
-                $user->sendEmailVerificationNotification();
-            }
+            // Mark as verified immediately upon confirmed link click
+            $user->forceFill(['email_verified_at' => now()])->save();
 
             event(new Registered($user));
 
             DB::commit();
 
+            // Log in the user after successful confirmation
             $this->guard()->login($user);
 
-            return $this->registered($request, $user)
-                    ?: redirect($this->redirectPath());
+            return redirect($this->redirectPath());
         } catch (\Throwable $e) {
             DB::rollBack();
-            if (isset($user) && $user->exists) {
-                $user->delete();
-            }
-
-            return back()
-                ->withInput($request->only('name', 'email'))
-                ->withErrors(['email' => 'We could not send the verification email. Please try again later.']);
+            return redirect()->route('register')->withErrors(['email' => 'Could not complete registration. Please try again.']);
         }
     }
 }

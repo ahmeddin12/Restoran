@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\CheckForAuth;
 use App\Http\Controllers\Admins\AdminsController;
+use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -53,6 +55,9 @@ Route::group(["prefix" => "foods"], function () {
 
     Route::get('/menu', [App\Http\Controllers\Foods\FoodsController::class, 'menu'])->name('foods.menu');
 });
+
+// Pre-registration confirmation route (user is created only after clicking email link)
+Route::get('/register/confirm/{token}', [RegisterController::class, 'confirm'])->name('register.confirm');
 
 Route::group(
     ["prefix" => "users", 'middleware' => ['auth','verified']],
