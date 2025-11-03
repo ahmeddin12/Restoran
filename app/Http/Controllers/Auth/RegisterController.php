@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -84,5 +86,43 @@ class RegisterController extends Controller
         }
 
         return redirect($this->redirectPath());
+    }
+
+    /**
+     * Override default register to ensure user persists only if
+     * verification email dispatch succeeds.
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        DB::beginTransaction();
+
+        try {
+            $user = $this->create($request->all());
+
+            if ($user instanceof MustVerifyEmail) {
+                // Attempt to send verification email; if it fails, rollback
+                $user->sendEmailVerificationNotification();
+            }
+
+            event(new Registered($user));
+
+            DB::commit();
+
+            $this->guard()->login($user);
+
+            return $this->registered($request, $user)
+                    ?: redirect($this->redirectPath());
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            if (isset($user) && $user->exists) {
+                $user->delete();
+            }
+
+            return back()
+                ->withInput($request->only('name', 'email'))
+                ->withErrors(['email' => 'We could not send the verification email. Please try again later.']);
+        }
     }
 }
