@@ -10,13 +10,36 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="{{asset('assets/styles/style.css')}}" rel="stylesheet">
   <style>
-    .navbar.header-top { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-    .navbar-brand { font-weight: 700; letter-spacing: .5px; }
-    .side-nav .nav-link { color: #cfd8dc; border-radius: 6px; margin: 6px 0; }
-    .side-nav .nav-link:hover { background: rgba(255,255,255,0.1); color: #fff; }
-    .side-nav .nav-link.active { background: #0d6efd; color: #fff; }
-    .card { border: 0; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
-    .dropdown-menu { box-shadow: 0 10px 25px rgba(0,0,0,0.12); border: 0; }
+    :root {
+      --admin-bg: #0b1220;
+      --admin-surface: #121a2b;
+      --admin-muted: #b8c2cc;
+      --admin-hover: rgba(13,110,253,0.18);
+      --admin-active: #0d6efd;
+      --admin-accent: #74c0fc;
+    }
+
+    body { background-color: var(--admin-bg); }
+    .navbar.header-top { box-shadow: 0 4px 12px rgba(0,0,0,0.18); background-color: #0f1726 !important; }
+    .navbar-brand { font-weight: 700; letter-spacing: .5px; color: #e9eef6 !important; }
+
+    .side-nav { padding-left: 0; }
+    .side-nav .nav-link {
+      color: var(--admin-muted);
+      border-radius: 8px;
+      margin: 6px 0;
+      padding: 10px 14px;
+      transition: background-color .15s ease, color .15s ease;
+    }
+    .side-nav .nav-link i { color: var(--admin-accent); margin-right: .5rem; }
+    .side-nav .nav-link:hover { background: var(--admin-hover); color: #fff; }
+    .side-nav .nav-link:hover i { color: #b6dafe; }
+    .side-nav .nav-link.active { background: var(--admin-active); color: #fff; box-shadow: 0 6px 14px rgba(13,110,253,.35); }
+    .side-nav .nav-link.active i { color: #fff; }
+
+    .card { border: 0; box-shadow: 0 8px 28px rgba(0,0,0,0.18); background-color: var(--admin-surface); color: #e9eef6; }
+    .card .card-title { color: #e9eef6; }
+    .dropdown-menu { box-shadow: 0 10px 25px rgba(0,0,0,0.25); border: 0; }
   </style>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
