@@ -111,8 +111,11 @@ class RegisterController extends Controller
 
         $confirmUrl = route('register.confirm', ['token' => $token]);
 
-        // Send a simple confirmation email with the confirmation link
-        Mail::raw("Please confirm your registration by clicking this link: " . $confirmUrl, function ($message) use ($payload) {
+        // Send a styled HTML confirmation email with the confirmation link
+        Mail::send('emails.register-confirm', [
+            'confirmUrl' => $confirmUrl,
+            'name' => $payload['name'],
+        ], function ($message) use ($payload) {
             $message->to($payload['email'])
                 ->subject('Confirm your registration');
         });
