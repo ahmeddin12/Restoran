@@ -120,8 +120,8 @@ class RegisterController extends Controller
                 ->subject('Confirm your registration');
         });
 
-        // Show a neutral page asking user to check their email
-        return redirect()->route('verification.notice')->with('resent', true);
+        // Redirect guest to a visible check-email page (no auth required)
+        return redirect()->route('register.check');
     }
 
     /**

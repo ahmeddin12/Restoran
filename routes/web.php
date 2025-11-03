@@ -25,6 +25,11 @@ Route::get('/services', [App\Http\Controllers\HomeController::class, 'services']
 
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 
+// Guest-accessible page telling user to check their email after registering
+Route::get('/register/check-email', function () {
+    return view('auth.check-email');
+})->name('register.check');
+
 
 Route::group(["prefix" => "foods"], function () {
 
