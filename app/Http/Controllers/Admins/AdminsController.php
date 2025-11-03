@@ -87,15 +87,15 @@ class AdminsController extends Controller
 
     request()->validate([
       'name'        => ['required', 'string', 'max:40', 'regex:/^[\pL\s]+$/u'],
-      'email'       => 'required|email|max:40',
-      'password'        => 'required|max:80',
+      'email'       => 'required|email|max:40|unique:admins,email',
+      'password'        => 'required|min:6|max:80',
     ]);
 
     $admin = Admin::create(
       [
         'name' => $request->name,
         'email' => $request->email,
-        'password' => Hash::make('password'),
+        'password' => Hash::make($request->password),
 
       ]
     );
@@ -103,6 +103,39 @@ class AdminsController extends Controller
     if ($admin) {
       return redirect()->route('admins.list')->with('success', 'You created an admin succesfully!');
     }
+  }
+
+  public function editAdmin($id)
+  {
+    $admin = Admin::findOrFail($id);
+    return view('admin.editAdmin', compact('admin'));
+  }
+
+  public function updateAdmin(Request $request, $id)
+  {
+    $admin = Admin::findOrFail($id);
+
+    $request->validate([
+      'name'        => ['required', 'string', 'max:40', 'regex:/^[\pL\s]+$/u'],
+      'email'       => 'required|email|max:40|unique:admins,email,' . $admin->id,
+      'password'    => 'nullable|min:6|max:80',
+    ]);
+
+    $admin->name = $request->name;
+    $admin->email = $request->email;
+    if ($request->filled('password')) {
+      $admin->password = Hash::make($request->password);
+    }
+    $admin->save();
+
+    return redirect()->route('admins.list')->with('success', 'Admin updated successfully!');
+  }
+
+  public function deleteAdmin($id)
+  {
+    $admin = Admin::findOrFail($id);
+    $admin->delete();
+    return redirect()->route('admins.list')->with('delete', 'Admin deleted successfully!');
   }
 
 

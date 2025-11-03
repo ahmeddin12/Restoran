@@ -93,6 +93,9 @@ Route::prefix('admins')->middleware('admin.auth')->group(function () {
     Route::get('/admins-list', [App\Http\Controllers\Admins\AdminsController::class, 'adminList'])->name('admins.list');
     Route::get('/create-admins', [App\Http\Controllers\Admins\AdminsController::class, 'createAdmin'])->name('admins.create');
     Route::post('/store-admins', [App\Http\Controllers\Admins\AdminsController::class, 'storeAdmin'])->name('admins.store');
+    Route::get('/edit-admins/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'editAdmin'])->name('admins.edit');
+    Route::post('/update-admins/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'updateAdmin'])->name('admins.update');
+    Route::get('/delete-admins/{id}', [App\Http\Controllers\Admins\AdminsController::class, 'deleteAdmin'])->name('admins.delete');
 
     //orders
     Route::get('/all-orders', [App\Http\Controllers\Admins\AdminsController::class, 'viewOrders'])->name('admins.order');
