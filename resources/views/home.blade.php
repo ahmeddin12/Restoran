@@ -64,7 +64,7 @@
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
-                        <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
+                    <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
                         <h5>Online Order</h5>
                         <p>Convenient online ordering with fast delivery ensures you enjoy your favorite meals anytime, anywhere.</p>
                     </div>
@@ -73,7 +73,7 @@
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
-                        <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
+                        <i class="fa fa-3x fa-headset text-primary mb-4"></i>
                         <h5>24/7 Service</h5>
                         <p>Our friendly customer service team is available around the clock to assist with reservations and inquiries.</p>
                     </div>
@@ -297,9 +297,9 @@
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <select class="form-select @error('num_people') is-invalid @enderror" name="num_people" id="select1">
-                                    <option value="1" {{ old('num_people') == '1' ? 'selected' : '' }}>People 1</option>
-                                    <option value="2" {{ old('num_people') == '2' ? 'selected' : '' }}>People 2</option>
-                                    <option value="3" {{ old('num_people') == '3' ? 'selected' : '' }}>People 3</option>
+                                    <option value="1" {{ old('num_people') == '1' ? 'selected' : '' }}>1</option>
+                                    <option value="2" {{ old('num_people') == '2' ? 'selected' : '' }}>2</option>
+                                    <option value="3" {{ old('num_people') == '3' ? 'selected' : '' }}>3</option>
                                 </select>
                                 <label for="select1">No Of People</label>
                                 @error('num_people')

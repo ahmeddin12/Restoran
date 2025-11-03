@@ -17,44 +17,47 @@
 
 
 <!-- Service Start -->
-<div class="container">
-  <div class="row g-4">
-    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-      <div class="service-item rounded pt-3">
-        <div class="p-4">
-          <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
-          <h5>Master Chefs</h5>
-          <p>Our team of 50+ professional chefs brings creativity and skill to every dish, ensuring top-notch culinary experiences.</p>
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
+                        <h5>Master Chefs</h5>
+                        <p>Our team of 50+ professional chefs brings creativity and skill to every dish, ensuring top-notch culinary experiences.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
+                        <h5>Quality Food</h5>
+                        <p>We use only the freshest, locally-sourced ingredients to deliver authentic flavors and wholesome meals.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4">
+                    <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
+                        <h5>Online Order</h5>
+                        <p>Convenient online ordering with fast delivery ensures you enjoy your favorite meals anytime, anywhere.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4">
+                        <i class="fa fa-3x fa-headset text-primary mb-4"></i>
+                        <h5>24/7 Service</h5>
+                        <p>Our friendly customer service team is available around the clock to assist with reservations and inquiries.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-      <div class="service-item rounded pt-3">
-        <div class="p-4">
-          <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
-          <h5>Quality Food</h5>
-          <p>We use only the freshest, locally-sourced ingredients to deliver authentic flavors and wholesome meals.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-      <div class="service-item rounded pt-3">
-        <div class="p-4">
-          <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
-          <h5>Online Order</h5>
-          <p>Convenient online ordering with fast delivery ensures you enjoy your favorite meals anytime, anywhere.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-      <div class="service-item rounded pt-3">
-        <div class="p-4">
-          <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
-          <h5>24/7 Service</h5>
-          <p>Our friendly customer service team is available around the clock to assist with reservations and inquiries.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>
 <!-- Service End -->
