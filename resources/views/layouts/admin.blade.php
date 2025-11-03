@@ -11,35 +11,39 @@
   <link href="{{asset('assets/styles/style.css')}}" rel="stylesheet">
   <style>
     :root {
-      --admin-bg: #0b1220;
-      --admin-surface: #121a2b;
-      --admin-muted: #b8c2cc;
-      --admin-hover: rgba(13,110,253,0.18);
+      /* Light theme */
+      --admin-bg: #f5f7fb;
+      --admin-surface: #ffffff;
+      --admin-muted: #495057;
+      --admin-hover: rgba(13,110,253,0.08);
       --admin-active: #0d6efd;
-      --admin-accent: #74c0fc;
+      --admin-accent: #0d6efd;
+      --admin-text: #1f2937;
     }
 
-    body { background-color: var(--admin-bg); }
-    .navbar.header-top { box-shadow: 0 4px 12px rgba(0,0,0,0.18); background-color: #0f1726 !important; }
-    .navbar-brand { font-weight: 700; letter-spacing: .5px; color: #e9eef6 !important; }
+    body { background-color: var(--admin-bg); color: var(--admin-text); }
+
+    /* Make top bar light even though markup uses navbar-dark/bg-dark */
+    .navbar.header-top { box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: #ffffff !important; }
+    .navbar-dark .navbar-brand, .navbar-dark .nav-link { color: var(--admin-text) !important; }
+    .navbar-brand { font-weight: 700; letter-spacing: .5px; }
 
     .side-nav { padding-left: 0; }
     .side-nav .nav-link {
-      color: var(--admin-muted);
+      color: var(--admin-text);
       border-radius: 8px;
       margin: 6px 0;
       padding: 10px 14px;
       transition: background-color .15s ease, color .15s ease;
     }
     .side-nav .nav-link i { color: var(--admin-accent); margin-right: .5rem; }
-    .side-nav .nav-link:hover { background: var(--admin-hover); color: #fff; }
-    .side-nav .nav-link:hover i { color: #b6dafe; }
-    .side-nav .nav-link.active { background: var(--admin-active); color: #fff; box-shadow: 0 6px 14px rgba(13,110,253,.35); }
-    .side-nav .nav-link.active i { color: #fff; }
+    .side-nav .nav-link:hover { background: var(--admin-hover); color: var(--admin-text); }
+    .side-nav .nav-link.active { background: var(--admin-active); color: #ffffff; box-shadow: 0 6px 14px rgba(13,110,253,.18); }
+    .side-nav .nav-link.active i { color: #ffffff; }
 
-    .card { border: 0; box-shadow: 0 8px 28px rgba(0,0,0,0.18); background-color: var(--admin-surface); color: #e9eef6; }
-    .card .card-title { color: #e9eef6; }
-    .dropdown-menu { box-shadow: 0 10px 25px rgba(0,0,0,0.25); border: 0; }
+    .card { border: 0; box-shadow: 0 8px 28px rgba(0,0,0,0.08); background-color: var(--admin-surface); color: var(--admin-text); }
+    .card .card-title { color: var(--admin-text); }
+    .dropdown-menu { box-shadow: 0 10px 25px rgba(0,0,0,0.12); border: 0; }
   </style>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

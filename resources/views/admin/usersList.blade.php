@@ -20,31 +20,46 @@
           </ul>
         </div>
         @endif
-        <h5 class="card-title mb-4 d-inline">Users</h5>
-        <a href="{{ route('admins.users.create') }}" class="btn btn-primary mb-4 text-center float-right">Create User</a>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">id</th>
-              <th scope="col">name</th>
-              <th scope="col">email</th>
-              <th scope="col">actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($users as $user)
-            <tr>
-              <th scope="row">{{ $user->id }}</th>
-              <td>{{ $user->name }}</td>
-              <td>{{ $user->email }}</td>
-              <td>
-                <a href="{{ route('admins.users.edit', $user->id) }}" class="btn btn-warning text-white">Edit</a>
-                <a href="{{ route('admins.users.delete', $user->id) }}" class="btn btn-danger">Delete</a>
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="card-title mb-0">Users</h5>
+          <a href="{{ route('admins.users.create') }}" class="btn btn-primary">
+            <i class="fa fa-plus mr-1"></i> Create User
+          </a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover table-striped align-middle mb-0">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" style="width: 80px;">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col" class="text-right" style="width: 200px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @forelse ($users as $user)
+              <tr>
+                <th scope="row">{{ $user->id }}</th>
+                <td class="text-capitalize">{{ $user->name }}</td>
+                <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
+                <td class="text-right">
+                  <a href="{{ route('admins.users.edit', $user->id) }}" class="btn btn-sm btn-warning text-white">
+                    <i class="fa fa-pen"></i> Edit
+                  </a>
+                  <a href="{{ route('admins.users.delete', $user->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Delete this user?');">
+                    <i class="fa fa-trash"></i> Delete
+                  </a>
+                </td>
+              </tr>
+              @empty
+              <tr>
+                <td colspan="4" class="text-center text-muted py-4">No users found.</td>
+              </tr>
+              @endforelse
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
