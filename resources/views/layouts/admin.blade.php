@@ -64,29 +64,45 @@
         <div class="collapse navbar-collapse" id="navbarText">
 
           @auth('admin')
-          <ul class="navbar-nav side-nav">
-            <li class="nav-item">
-              <a class="nav-link {{ request()->routeIs('admins.dashboard') ? 'active' : '' }}" style="margin-left: 20px;" href="{{route('admins.dashboard')}}"><i class="fa-solid fa-gauge-high mr-2"></i> Home
-                <span class="sr-only">(current)</span>
-              </a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link {{ request()->routeIs('admins.users.*') ? 'active' : '' }}" href="{{route('admins.users.list')}}" style="margin-left: 20px;"><i class="fa-solid fa-users mr-2"></i> Users</a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link {{ request()->routeIs('admins.list') ? 'active' : '' }}" href="{{route('admins.list')}}" style="margin-left: 20px;"><i class="fa-solid fa-user-shield mr-2"></i> Admins</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {{ request()->routeIs('admins.order') ? 'active' : '' }}" href="{{ route('admins.order')}}" style="margin-left: 20px;"><i class="fa-solid fa-bag-shopping mr-2"></i> Orders</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {{ request()->routeIs('admins.foods') ? 'active' : '' }}" href="{{route('admins.foods')}}" style="margin-left: 20px;"><i class="fa-solid fa-burger mr-2"></i> Foods</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {{ request()->routeIs('admins.bookings') ? 'active' : '' }}" href="{{route('admins.bookings')}}" style="margin-left: 20px;"><i class="fa-solid fa-calendar-check mr-2"></i> Bookings</a>
-            </li>
-          </ul>
+          <ul class="navbar-nav side-nav bg-light vh-100 p-3">
+    <li class="nav-item mb-2">
+        <a class="nav-link {{ request()->routeIs('admins.dashboard') ? 'active bg-primary text-white' : 'text-dark' }}" 
+           href="{{route('admins.dashboard')}}">
+            <i class="fa-solid fa-gauge-high mr-2"></i> Home
+        </a>
+    </li>
+    <li class="nav-item mb-2">
+        <a class="nav-link {{ request()->routeIs('admins.users.*') ? 'active bg-primary text-white' : 'text-dark' }}" 
+           href="{{route('admins.users.list')}}">
+            <i class="fa-solid fa-users mr-2"></i> Users
+        </a>
+    </li>
+    <li class="nav-item mb-2">
+        <a class="nav-link {{ request()->routeIs('admins.list') ? 'active bg-primary text-white' : 'text-dark' }}" 
+           href="{{route('admins.list')}}">
+            <i class="fa-solid fa-user-shield mr-2"></i> Admins
+        </a>
+    </li>
+    <li class="nav-item mb-2">
+        <a class="nav-link {{ request()->routeIs('admins.order') ? 'active bg-primary text-white' : 'text-dark' }}" 
+           href="{{ route('admins.order')}}">
+            <i class="fa-solid fa-bag-shopping mr-2"></i> Orders
+        </a>
+    </li>
+    <li class="nav-item mb-2">
+        <a class="nav-link {{ request()->routeIs('admins.foods') ? 'active bg-primary text-white' : 'text-dark' }}" 
+           href="{{route('admins.foods')}}">
+            <i class="fa-solid fa-burger mr-2"></i> Foods
+        </a>
+    </li>
+    <li class="nav-item mb-2">
+        <a class="nav-link {{ request()->routeIs('admins.bookings') ? 'active bg-primary text-white' : 'text-dark' }}" 
+           href="{{route('admins.bookings')}}">
+            <i class="fa-solid fa-calendar-check mr-2"></i> Bookings
+        </a>
+    </li>
+</ul>
+
           @endauth
 
           <ul class="navbar-nav ml-md-auto d-md-flex">
