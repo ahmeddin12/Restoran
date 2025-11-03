@@ -151,10 +151,8 @@ class RegisterController extends Controller
 
             DB::commit();
 
-            // Log in the user after successful confirmation
-            $this->guard()->login($user);
-
-            return redirect($this->redirectPath());
+            // Do not auto-login; send the user to login page
+            return redirect()->route('login')->with('status', 'Your email has been verified. Please log in.');
         } catch (\Throwable $e) {
             DB::rollBack();
             return redirect()->route('register')->withErrors(['email' => 'Could not complete registration. Please try again.']);
