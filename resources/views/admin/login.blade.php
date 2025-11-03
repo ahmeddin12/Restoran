@@ -1,37 +1,40 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="row">
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title mt-5">Login</h5>
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+    <div class="card mt-5">
+      <div class="card-body p-4">
+        <h4 class="card-title mb-4 text-center">Admin Login</h4>
         @if (\Session::has('error'))
-        <div class="alert alert-danger">
-          <ul>
-            <li>{!! \Session::get('error') !!}</li>
-          </ul>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <i class="fa-solid fa-triangle-exclamation mr-2"></i> {{ \Session::get('error') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         @endif
-        <form method="POST" class="p-auto" action="{{route('check.login')}}">
+        <form method="POST" action="{{route('check.login')}}">
           @csrf
           <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input type="email" name="email" id="form2Example1" class="form-control" placeholder="Email" />
+          <div class="form-group mb-3">
+            <label for="email" class="small text-muted">Email</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" />
 
           </div>
 
 
           <!-- Password input -->
-          <div class="form-outline mb-4">
-            <input type="password" name="password" id="form2Example2" placeholder="Password" class="form-control" />
+          <div class="form-group mb-4">
+            <label for="password" class="small text-muted">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password" class="form-control" />
 
           </div>
 
 
 
           <!-- Submit button -->
-          <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">Login</button>
+          <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
 
 
         </form>

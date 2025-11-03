@@ -33,7 +33,7 @@ class AdminsController extends Controller
 
       return redirect()->route('admins.dashboard');
     }
-    return redirect()->back()->with(['error' => 'Error logging in!']);
+    return redirect()->back()->with(['error' => 'Invalid email or password. Please try again.']);
   }
 
   public function dashboard()
