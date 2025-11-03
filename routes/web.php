@@ -14,7 +14,7 @@ use App\Http\Controllers\Admins\AdminsController;
 // });
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home2');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -55,7 +55,7 @@ Route::group(["prefix" => "foods"], function () {
 });
 
 Route::group(
-    ["prefix" => "users"],
+    ["prefix" => "users", 'middleware' => ['auth','verified']],
     function () {
         Route::get('/all-bookings', [App\Http\Controllers\Users\UsersController::class, 'getBookings'])->name('users.bookings');
 
