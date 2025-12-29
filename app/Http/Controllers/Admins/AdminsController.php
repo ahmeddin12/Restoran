@@ -61,7 +61,7 @@ class AdminsController extends Controller
     $request->session()->regenerateToken();
 
     // Redirect back to the login page
-    return redirect()->route('home');
+    return redirect()->route('admins.login');
   }
 
   public function adminList()

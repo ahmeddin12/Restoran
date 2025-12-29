@@ -170,10 +170,11 @@ class FoodsController extends Controller
             'spe_request' => 'required|string',
         ]);
 
-        $currentDate = date('m/d/Y h:i:sa');
+        $requestDate = \Carbon\Carbon::parse($request->date);
+        $currentDate = \Carbon\Carbon::now();
 
-        if ($request->date < $currentDate or $request->date == $currentDate) {
-            return redirect()->route('home')->with('error', 'Please select a correct date!');
+        if ($requestDate->isPast() || $requestDate->isToday()) {
+            return redirect()->route('home')->with('error', 'Please select a future date and time for your booking!');
         } else {
 
             $bookingTable = Booking::create(
