@@ -10,7 +10,7 @@
                 <h1 class="display-3 text-white animated slideInLeft">Enjoy Our<br>Delicious Meal</h1>
                 <p class="text-white animated slideInLeft mb-4 pb-2"> Experience the finest flavors crafted by our expert chefs. From breakfast to dinner, each dish is prepared with fresh ingredients, care, and passion to create unforgettable culinary experiences.
                 </p>
-                <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
+                <a href="#book-table" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
             </div>
             <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                 <img class="img-fluid" src="img/hero.png" alt="">
@@ -245,7 +245,7 @@
 
 
 <!-- Reservation Start -->
-<div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+<div id="book-table" class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
     <div class="row g-0">
         <div class="col-md-6">
             <div class="video">
